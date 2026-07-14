@@ -21,6 +21,15 @@ export const apiLimiter = rateLimit({
   legacyHeaders: false
 });
 
+// Rate limiting for auth endpoints (stricter still - these are brute-force targets)
+export const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 10, // 10 register/login attempts per IP per 15 minutes
+  message: 'Too many login/register attempts from this IP, please try again later.',
+  standardHeaders: true,
+  legacyHeaders: false
+});
+
 // Security headers
 export const securityHeaders = helmet();
 

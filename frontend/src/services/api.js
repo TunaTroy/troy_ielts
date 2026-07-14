@@ -18,6 +18,14 @@ export const writingAPI = {
       question 
     });
     return response.data;
+  },
+  assess: async (task, question, essay) => {
+    const response = await axios.post(`${API_BASE_URL}/writing/assess`, { 
+      task, 
+      question, 
+      essay 
+    });
+    return response.data;
   }
 };
 
